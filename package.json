@@ -1,0 +1,27 @@
+{
+	"name": "nei-market-analytics-api",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"main": "server.ts",
+	"author": "Victor José Lopes Navarro",
+	"license": "MIT",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "bun run --watch src/server.ts --env-file=.env",
+		"lint": "npx @biomejs/biome format --write ./"
+	},
+	"dependencies": {
+		"@elysiajs/cors": "^1.2.0",
+		"@elysiajs/swagger": "^1.2.0",
+		"@google/generative-ai": "^0.21.0",
+		"elysia": "latest",
+		"elysia-rate-limit": "^4.1.0",
+		"elysiajs-helmet": "^1.0.2",
+		"socket.io": "^4.8.1"
+	},
+	"devDependencies": {
+		"bun-types": "latest"
+	},
+	"module": "src/server.js"
+}
