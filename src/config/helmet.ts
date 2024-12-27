@@ -1,6 +1,3 @@
-const CLIENT_HOST = Bun.env.CLIENT_HOST;
-const CLIENT_PORT = Bun.env.CLIENT_PORT;
-
 export const helmetConfig = {
     csp: {
         defaultSrc: [ "'self'" ],

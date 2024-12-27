@@ -8,12 +8,18 @@ import cors from "@/middlewares/cors";
 import rateLimiter from "@/middlewares/rateLimiter";
 import swagger from "@/middlewares/swagger";
 import helmet from "@/middlewares/helmet";
+import handlePreflight from "@/middlewares/handlePreflight";
 
 const app = new Elysia({
     name: "NEI Market Analytics API",
     aot: false
-}).onRequest(({ set }) => {
-    helmet(set);
+}).onRequest(({ set, request }) => {
+    if (!request.url.endsWith("/swagger")) {
+        helmet(set);
+    }
+    if (request.method === 'OPTIONS') {
+        handlePreflight(set);
+    }
 });
 
 app.use(cors);

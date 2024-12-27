@@ -1,4 +1,4 @@
-import { type Elysia, t } from "elysia";
+import { Elysia, t } from "elysia";
 import { listCompanyNews, listMarketNews } from "@/proxy/Finnhub";
 import formatDate from "@/utils/formatDate";
 import queryParamsEncode from "@/traits/queryParamsEncode";
@@ -11,37 +11,40 @@ from.setDate(from.getDate() - 1);
 const formattedFrom = formatDate(from);
 const formattedTo = formatDate(to);
 
-export function FinnhubRoutes(app: Elysia) {
-    app.get(
-        "/api/v1/news",
-        async ({ query }) =>
-            listMarketNews({
-                query: queryParamsEncode(query),
-            }),
-        {
-            query: t.Object({
-                category: t.Optional(t.String({ default: "crypto" })),
-            }),
+export function FinnhubRoutes(app: Elysia): Elysia {
+    return app.use(
+        new Elysia({
+            name: "Finnhub Routes",
+            aot: false,
+            prefix: "/api/v1",
             detail: {
                 tags: [ "Finnhub" ],
             },
-        },
-    );
-    app.get(
-        "/api/v1/company-news",
-        async ({ query }) =>
-            listCompanyNews({
-                query: queryParamsEncode(query),
-            }),
-        {
-            query: t.Object({
-                symbol: t.Optional(t.String({ default: "AAPL" })),
-                from: t.Optional(t.String({ default: formattedFrom })),
-                to: t.Optional(t.String({ default: formattedTo })),
-            }),
-            detail: {
-                tags: [ "Finnhub" ],
+        }).get(
+            "/news",
+            async ({ query }) =>
+                listMarketNews({
+                    query: queryParamsEncode(query),
+                }),
+            {
+                query: t.Object({
+                    category: t.Optional(t.String({ default: "crypto" })),
+                }),
             },
-        },
-    );
+        )
+            .get(
+                "/company-news",
+                async ({ query }) =>
+                    listCompanyNews({
+                        query: queryParamsEncode(query),
+                    }),
+                {
+                    query: t.Object({
+                        symbol: t.Optional(t.String({ default: "AAPL" })),
+                        from: t.Optional(t.String({ default: formattedFrom })),
+                        to: t.Optional(t.String({ default: formattedTo })),
+                    }),
+                },
+            )
+    )
 }

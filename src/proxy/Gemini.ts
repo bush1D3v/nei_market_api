@@ -23,12 +23,12 @@ interface GeminiRequest {
  *
  * @param {Request} req - The request object
  * @param {Response} res - The response object
- * @returns {string} Confirmation message
+ * @returns {{ message: string }} Confirmation message
  * @throws {ElysiaCustomStatusResponse<number, CatchError>} If the request to the external API fails
  */
 export default async function generateContent({
     body,
-}: { body: GeminiRequest }): Promise<string | ElysiaCustomStatusResponse<number, CatchError>> {
+}: { body: GeminiRequest }): Promise<{ message: string } | ElysiaCustomStatusResponse<number, CatchError>> {
     const { parts, sessionId }: GeminiRequest = body;
 
     const userText = parts[ 0 ].text as string;
@@ -73,7 +73,7 @@ export default async function generateContent({
         if (socket) {
             socket.emit("content_end", sessionId);
         }
-        return "OK";
+        return { message: "OK" };
     } catch (error: unknown) {
         socket.emit("error", { error, sessionId });
         return catchErrors({ status: 500, message: "Internal Server Error", error });
