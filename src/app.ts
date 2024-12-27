@@ -14,12 +14,9 @@ const app = new Elysia({
     name: "NEI Market Analytics API",
     aot: false
 }).onRequest(({ set, request }) => {
-    if (!request.url.endsWith("/swagger")) {
-        helmet(set);
-    }
-    if (request.method === 'OPTIONS') {
-        handlePreflight(set);
-    }
+    if (!request.url.endsWith("/swagger")) helmet(set);
+
+    if (request.method === 'OPTIONS') handlePreflight(set);
 });
 
 app.use(cors);

@@ -4,11 +4,11 @@ export const swaggerConfig: ElysiaSwaggerConfig = {
     version: "1.0.0",
     documentation: {
         openapi: "3.1.0",
-        security: [
-            {
-                bearerAuth: [],
-            },
-        ],
+        // security: [
+        //     {
+        //         bearerAuth: [],
+        //     },
+        // ],
         tags: [
             {
                 name: "CoinGecko",
@@ -47,15 +47,15 @@ export const swaggerConfig: ElysiaSwaggerConfig = {
                 "NEI Market Analytics is an open-source project designed to provide comprehensive market value analyses for various financial instruments and digital assets. This repository aims to create a robust platform for tracking and analyzing market trends across multiple sectors.",
             termsOfService: "https://opensource.org/licenses/MIT",
         },
-        components: {
-            securitySchemes: {
-                bearerAuth: {
-                    type: "http",
-                    scheme: "bearer",
-                    bearerFormat: "JWT",
-                },
-            },
-        },
+        // components: {
+        //     securitySchemes: {
+        //         bearerAuth: {
+        //             type: "http",
+        //             scheme: "bearer",
+        //             bearerFormat: "JWT",
+        //         },
+        //     },
+        // },
         servers: [
             {
                 url: "http://localhost:3000",
