@@ -1,8 +1,8 @@
 {
 	"material-icon-theme.folders.associations": {
-		"tags": "mjml",
 		"dto": "interface",
-		"proxy": "stack"
+		"proxy": "stack",
+		"traits": "helm"
 	},
 	"cSpell.words": [
 		"aboutus",
@@ -42,6 +42,8 @@
 		"dogecoin",
 		"Dogecoin",
 		"dtos",
+		"elysia",
+		"Elysia",
 		"elysiajs",
 		"Emercoin",
 		"Erackson",

@@ -5,20 +5,24 @@ import { FinnhubRoutes } from "@/routes/Finnhub";
 import { CurrencyQuotesRoutes } from "@/routes/CurrencyQuotes";
 import { GenerativeAIRoutes } from "@/routes/Gemini";
 import cors from "@/middlewares/cors";
-import helmet from "@/middlewares/helmet";
 import rateLimiter from "@/middlewares/rateLimiter";
 import swagger from "@/middlewares/swagger";
+import helmet from "@/middlewares/helmet";
 
-const app = new Elysia();
+const app = new Elysia({
+    name: "NEI Market Analytics API",
+    aot: false
+}).onRequest(({ set }) => {
+    helmet(set);
+});
 
-//app.use(cors);
-app.use(helmet);
+app.use(cors);
 app.use(rateLimiter);
 app.use(swagger);
-app.use(CoinGeckoRoutes as any);
-app.use(BrapiDevRoutes as any);
-app.use(GenerativeAIRoutes as any);
-app.use(FinnhubRoutes as any);
-app.use(CurrencyQuotesRoutes as any);
+app.use(CoinGeckoRoutes);
+app.use(BrapiDevRoutes);
+app.use(GenerativeAIRoutes);
+app.use(CurrencyQuotesRoutes);
+app.use(FinnhubRoutes);
 
 export default app;

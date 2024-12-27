@@ -1,17 +1,17 @@
-import {error} from "elysia";
-import {get} from "@/helpers/HttpClient";
-import type {New} from "@/types/Finnhub/New";
-import {ElysiaCustomStatusResponse} from "elysia/dist/error";
+import { get } from "@/helpers/HttpClient";
+import type { New } from "@/types/Finnhub/New";
+import type { ElysiaCustomStatusResponse } from "elysia/dist/error";
+import catchErrors, { type CatchError } from "@/errors/catcher";
 
 const BASE_API_URL = Bun.env.FINNHUB_HOST as string;
 const API_KEY = Bun.env.FINNHUB_KEY as string;
 
 const defaultHeaders = {
-	"X-Finnhub-Token": API_KEY,
+    "X-Finnhub-Token": API_KEY,
 };
 
 interface ListingsMarketNewsQueryParams {
-	category?: string;
+    category?: string;
 }
 
 /**
@@ -19,32 +19,33 @@ interface ListingsMarketNewsQueryParams {
  *
  * @param {ListingsMarketNewsQueryParams} query - The query parameters
  * @returns {New[]} The list of market news
- * @throws {ElysiaCustomStatusResponse<any>} If the request to the external API fails
+ * @throws {ElysiaCustomStatusResponse<number, CatchError>} If the request to the external API fails
  */
 export async function listMarketNews({
-	query,
-}: {query: ListingsMarketNewsQueryParams}): Promise<New[] | ElysiaCustomStatusResponse<any>> {
-	const categoryQuery = `?category=${query.category}`;
-	const url = `${BASE_API_URL}/api/v1/news${categoryQuery}`;
+    query,
+}: { query: ListingsMarketNewsQueryParams }): Promise<
+    New[] | ElysiaCustomStatusResponse<number, CatchError>
+> {
+    const categoryQuery = `?category=${query.category}`;
+    const url = `${BASE_API_URL}/api/v1/news${categoryQuery}`;
 
-	try {
-		const response = await get(url, defaultHeaders);
+    try {
+        const response = await get(url, defaultHeaders);
 
-		if (!response.ok) throw new Error();
+        if (!response.ok) throw new Error();
 
-		const jsonData: New[] = await response.json();
+        const jsonData: New[] = await response.json();
 
-		return jsonData;
-	} catch (err) {
-		console.error(err);
-		return error(500, "Internal Server Error");
-	}
+        return jsonData;
+    } catch (error: unknown) {
+        return catchErrors({ status: 500, message: "Internal Server Error", error });
+    }
 }
 
 interface ListingsCompanyNewsQueryParams {
-	symbol?: string;
-	from?: string;
-	to?: string;
+    symbol?: string;
+    from?: string;
+    to?: string;
 }
 
 /**
@@ -52,26 +53,27 @@ interface ListingsCompanyNewsQueryParams {
  *
  * @param {ListingsCompanyNewsQueryParams} query - The query parameters
  * @returns {New[]} The list of company news
- * @throws {ElysiaCustomStatusResponse<any>} If the request to the external API fails
+ * @throws {ElysiaCustomStatusResponse<number, CatchError>} If the request to the external API fails
  */
 export async function listCompanyNews({
-	query,
-}: {query: ListingsCompanyNewsQueryParams}): Promise<New[] | ElysiaCustomStatusResponse<any>> {
-	const symbolQuery = `?symbol=${query.symbol}`;
-	const fromQuery = query.from ? `&from=${query.from}` : "";
-	const toQuery = query.to ? `&to=${query.to}` : "";
-	const url = `${BASE_API_URL}/api/v1/company-news${symbolQuery}${fromQuery}${toQuery}`;
+    query,
+}: { query: ListingsCompanyNewsQueryParams }): Promise<
+    New[] | ElysiaCustomStatusResponse<number, CatchError>
+> {
+    const symbolQuery = `?symbol=${query.symbol}`;
+    const fromQuery = query.from ? `&from=${query.from}` : "";
+    const toQuery = query.to ? `&to=${query.to}` : "";
+    const url = `${BASE_API_URL}/api/v1/company-news${symbolQuery}${fromQuery}${toQuery}`;
 
-	try {
-		const response = await get(url, defaultHeaders);
+    try {
+        const response = await get(url, defaultHeaders);
 
-		if (!response.ok) throw new Error();
+        if (!response.ok) throw new Error();
 
-		const jsonData: New[] = await response.json();
+        const jsonData: New[] = await response.json();
 
-		return jsonData;
-	} catch (err) {
-		console.error(err);
-		return error(500, "Internal Server Error");
-	}
+        return jsonData;
+    } catch (error: unknown) {
+        return catchErrors({ status: 500, message: "Internal Server Error", error });
+    }
 }

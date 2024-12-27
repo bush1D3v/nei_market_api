@@ -5,10 +5,12 @@ import { setSocket } from "@/proxy/Gemini";
 
 const SOCKET_PORT = Bun.env.SOCKET_PORT;
 
-const io = new Server().listen(SOCKET_PORT);
+const io = new Server().listen(SOCKET_PORT, {
+    cors: corsOptions
+});
 
 io.on("connection", (socketConnection) => {
-	setSocket(socketConnection);
+    setSocket(socketConnection);
 });
 
 const SERVER_PORT = Bun.env.SERVER_PORT;
