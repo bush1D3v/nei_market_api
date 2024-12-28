@@ -1,0 +1,16 @@
+.github
+.vscode
+tests
+.editorconfig
+.env
+.env.example
+.gitignore
+biome.json
+COMMIT_PATTERN.md
+CONTRIBUTING.md
+Dockerfile
+.dockerignore
+.git
+LICENSE
+README.md
+SECURITY.md

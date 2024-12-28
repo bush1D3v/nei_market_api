@@ -9,7 +9,10 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "bun run --watch src/server.ts --env-file=.env",
-		"lint": "npx @biomejs/biome format --write ./"
+		"lint": "npx @biomejs/biome format --write ./",
+		"docker-build": "docker build -t nei_market_api .",
+		"docker-run": "docker-compose up",
+		"docker-clean": "docker-compose down"
 	},
 	"dependencies": {
 		"@elysiajs/cors": "^1.2.0",

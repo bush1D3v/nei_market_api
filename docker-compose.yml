@@ -1,0 +1,9 @@
+version: '3.2'
+
+services:
+  app:
+    image: "oven/bun"
+    entrypoint: []
+    command: "/bin/sh -c 'bun install && bun run --watch src/app.ts'"
+    ports: ["3000:3000"]
+    volumes: ["./:/home/bun/app"]

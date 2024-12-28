@@ -21,8 +21,8 @@ O **NEI Market Analytics** é um projeto de código aberto projetado para fornec
    <img align='center' height='50' width='60' title='Biomejs' alt='biomejs' src='https://github.com/user-attachments/assets/b3d8a249-e17f-4e64-9608-4a4783b7bbc0' /> &nbsp;&nbsp;
    <img align='center' height='50' width='50' title='Cors' alt='cors' src='https://github.com/bush1D3v/101acessorios_api/assets/133554156/3b4cccec-065e-428a-a663-1c5939404c1a' /> &nbsp;
    <img align='center' height='50' width='50' title='Socket.io' alt='socket.io' src='https://github.com/user-attachments/assets/0d4bbd4e-64dc-4981-aabd-c89ceae0201e' /> &nbsp;
-   <img align='center' height='50' width='50' title='Rate-limiter' alt='rate-limiter' src='https://github.com/user-attachments/assets/f5ff3529-3dd4-426e-89a1-7f871693a3dd' /> 
-   <img align='center' height='55' width='55' title='Generative-ai' alt='generative-ai' src='https://github.com/user-attachments/assets/ec5efb9a-2cd7-48cc-bb1c-2c4ffe92af4d' /> 
+   <img align='center' height='50' width='50' title='Rate-limiter' alt='rate-limiter' src='https://github.com/user-attachments/assets/f5ff3529-3dd4-426e-89a1-7f871693a3dd' />
+   <img align='center' height='55' width='55' title='Generative-ai' alt='generative-ai' src='https://github.com/user-attachments/assets/ec5efb9a-2cd7-48cc-bb1c-2c4ffe92af4d' />
    <img align='center' height='60' width='70' title='Swagger' alt='swagger' src='https://github.com/bush1D3v/tsbank_api/assets/133554156/6739401f-d03b-47f8-b01f-88da2a9075d1' />
 </div>
 
@@ -36,7 +36,7 @@ Com a adição do Docker, você agora pode utilizar dos scripts fornecidos em `p
 
 Para isso, segue a lista de funções de cada script:
 
-> `docker-build`: Constrói as imagens docker do projeto <br> `docker-run`: Roda os containers de navarro_blog_front <br> `docker-up`: Sobe os contêineres navarro_blog_front <br> `docker-clean`: Remove as imagens docker do projeto
+> `docker-build`: Constrói as imagens docker do projeto <br> `docker-run`: Roda e sobe os containers de navarro_blog_front<br> `docker-clean`: Remove as imagens docker do projeto
 
 ## Configuração IDE recomendada
 
@@ -87,8 +87,8 @@ The **NEI Market Analytics** is an open-source project designed to provide compr
    <img align='center' height='50' width='60' title='Biomejs' alt='biomejs' src='https://github.com/user-attachments/assets/b3d8a249-e17f-4e64-9608-4a4783b7bbc0' /> &nbsp;&nbsp;
    <img align='center' height='50' width='50' title='Cors' alt='cors' src='https://github.com/bush1D3v/101acessorios_api/assets/133554156/3b4cccec-065e-428a-a663-1c5939404c1a' /> &nbsp;
    <img align='center' height='50' width='50' title='Socket.io' alt='socket.io' src='https://github.com/user-attachments/assets/0d4bbd4e-64dc-4981-aabd-c89ceae0201e' /> &nbsp;
-   <img align='center' height='50' width='50' title='Rate-limiter' alt='rate-limiter' src='https://github.com/user-attachments/assets/f5ff3529-3dd4-426e-89a1-7f871693a3dd' /> 
-   <img align='center' height='55' width='55' title='Generative-ai' alt='generative-ai' src='https://github.com/user-attachments/assets/ec5efb9a-2cd7-48cc-bb1c-2c4ffe92af4d' /> 
+   <img align='center' height='50' width='50' title='Rate-limiter' alt='rate-limiter' src='https://github.com/user-attachments/assets/f5ff3529-3dd4-426e-89a1-7f871693a3dd' />
+   <img align='center' height='55' width='55' title='Generative-ai' alt='generative-ai' src='https://github.com/user-attachments/assets/ec5efb9a-2cd7-48cc-bb1c-2c4ffe92af4d' />
    <img align='center' height='60' width='70' title='Swagger' alt='swagger' src='https://github.com/bush1D3v/tsbank_api/assets/133554156/6739401f-d03b-47f8-b01f-88da2a9075d1' />
 </div>
 
@@ -102,7 +102,7 @@ With the addition of Docker, you can now use the scripts provided in `package.js
 
 To do this, here is the list of functions for each script:
 
-> `docker-build`: Builds the project's docker images <br> `docker-run`: Runs the navarro_blog_front containers <br> `docker-up`: Builds and up the navarro_blog_front containers <br> `docker-clean `: Remove docker images
+> `docker-build`: Builds the project's docker images <br> `docker-run`: Builds and Runs the navarro_blog_front containers <br> `docker-clean `: Remove docker images
 
 ## Recommended IDE Setup
 
