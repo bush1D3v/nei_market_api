@@ -1,31 +1,31 @@
-import { get } from "@/helpers/HttpClient";
-import type { ElysiaCustomStatusResponse } from "elysia/dist/error";
-import type { Stock } from "@/types/BrapiDev/Stock";
-import type { SortBy } from "@/types/BrapiDev/SortBy";
-import type { SortOrder } from "@/types/BrapiDev/SortOrder";
-import type { ValidRanges } from "@/types/BrapiDev/ValidRanges";
-import type { ValidIntervals } from "@/types/BrapiDev/ValidIntervals";
-import type { DetailedStock } from "@/types/BrapiDev/DetailedStock";
-import catchErrors, { type CatchError } from "@/errors/catcher";
+import {get} from "@/helpers/HttpClient";
+import type {ElysiaCustomStatusResponse} from "elysia/dist/error";
+import type {Stock} from "@/types/BrapiDev/Stock";
+import type {SortBy} from "@/types/BrapiDev/SortBy";
+import type {SortOrder} from "@/types/BrapiDev/SortOrder";
+import type {ValidRanges} from "@/types/BrapiDev/ValidRanges";
+import type {ValidIntervals} from "@/types/BrapiDev/ValidIntervals";
+import type {DetailedStock} from "@/types/BrapiDev/DetailedStock";
+import catchErrors, {type CatchError} from "@/errors/catcher";
 
 const BASE_API_URL = Bun.env.BRAPI_HOST;
 const API_KEY = Bun.env.BRAPI_KEY;
 
 const defaultHeaders = {
-    "Accept-Encoding": "deflate, gzip",
-    "referrer-policy": "origin-when-cross-origin",
-    authorization: `Bearer ${API_KEY}`,
+	"Accept-Encoding": "deflate, gzip",
+	"referrer-policy": "origin-when-cross-origin",
+	authorization: `Bearer ${API_KEY}`,
 };
 
 interface ListQueryParams {
-    limit?: number;
-    page?: number;
-    sortBy?: SortBy;
-    sortOrder?: SortOrder;
+	limit?: number;
+	page?: number;
+	sortBy?: SortBy;
+	sortOrder?: SortOrder;
 }
 
 interface ResponseListStocks {
-    stocks: Stock[];
+	stocks: Stock[];
 }
 
 /**
@@ -36,40 +36,40 @@ interface ResponseListStocks {
  * @throws {ElysiaCustomStatusResponse<number, CatchError>} If the request to the external API fails
  */
 export async function listStocks({
-    query,
-}: { query: ListQueryParams }): Promise<Stock[] | ElysiaCustomStatusResponse<number, CatchError>> {
-    const limitQuery = `?limit=${query.limit}`;
-    const pageQuery = `&page=${query.page}`;
-    const sortByQuery = query.sortBy ? `&sortBy=${query.sortBy}` : "";
-    const sortOrderQuery = query.sortOrder ? `&sortOrder=${query.sortOrder}` : "";
+	query,
+}: {query: ListQueryParams}): Promise<Stock[] | ElysiaCustomStatusResponse<number, CatchError>> {
+	const limitQuery = `?limit=${query.limit}`;
+	const pageQuery = `&page=${query.page}`;
+	const sortByQuery = query.sortBy ? `&sortBy=${query.sortBy}` : "";
+	const sortOrderQuery = query.sortOrder ? `&sortOrder=${query.sortOrder}` : "";
 
-    const url = `${BASE_API_URL}/quote/list${limitQuery}${pageQuery}${sortByQuery}${sortOrderQuery}`;
+	const url = `${BASE_API_URL}/quote/list${limitQuery}${pageQuery}${sortByQuery}${sortOrderQuery}`;
 
-    try {
-        const response = await get(url, defaultHeaders);
+	try {
+		const response = await get(url, defaultHeaders);
 
-        if (!response.ok) throw new Error();
+		if (!response.ok) throw new Error();
 
-        const jsonData: ResponseListStocks = await response.json();
+		const jsonData: ResponseListStocks = await response.json();
 
-        return jsonData.stocks;
-    } catch (error: unknown) {
-        return catchErrors({ status: 500, message: "Internal Server Error", error });
-    }
+		return jsonData.stocks;
+	} catch (error: unknown) {
+		return catchErrors({status: 500, message: "Internal Server Error", error});
+	}
 }
 
 interface DetailQueryParams {
-    range?: ValidRanges;
-    interval?: ValidIntervals;
-    modules?: string;
+	range?: ValidRanges;
+	interval?: ValidIntervals;
+	modules?: string;
 }
 
 interface TickerParams {
-    ticker: string;
+	ticker: string;
 }
 
 interface ResponseDetailStock {
-    results: DetailedStock[];
+	results: DetailedStock[];
 }
 
 /**
@@ -81,27 +81,27 @@ interface ResponseDetailStock {
  * @throws {ElysiaCustomStatusResponse<number, CatchError>} If the request to the external API fails
  */
 export async function detailStock({
-    query,
-    params,
-}: { query: DetailQueryParams; params: TickerParams }): Promise<
-    DetailedStock | ElysiaCustomStatusResponse<number, CatchError>
+	query,
+	params,
+}: {query: DetailQueryParams; params: TickerParams}): Promise<
+	DetailedStock | ElysiaCustomStatusResponse<number, CatchError>
 > {
-    const rangeQuery = `?range=${query.range}`;
-    const intervalQuery = `&interval=${query.interval}`;
-    const modulesQuery = `&modules=${query.modules}`;
-    const ticker = encodeURIComponent(params.ticker);
+	const rangeQuery = `?range=${query.range}`;
+	const intervalQuery = `&interval=${query.interval}`;
+	const modulesQuery = `&modules=${query.modules}`;
+	const ticker = encodeURIComponent(params.ticker);
 
-    const url = `${BASE_API_URL}/quote/${ticker}${rangeQuery}${intervalQuery}${modulesQuery}`;
+	const url = `${BASE_API_URL}/quote/${ticker}${rangeQuery}${intervalQuery}${modulesQuery}`;
 
-    try {
-        const response = await get(url, defaultHeaders);
+	try {
+		const response = await get(url, defaultHeaders);
 
-        if (!response.ok) throw new Error();
+		if (!response.ok) throw new Error();
 
-        const stock: ResponseDetailStock = await response.json();
+		const stock: ResponseDetailStock = await response.json();
 
-        return stock.results[ 0 ];
-    } catch (error: unknown) {
-        return catchErrors({ status: 500, message: "Internal Server Error", error });
-    }
+		return stock.results[0];
+	} catch (error: unknown) {
+		return catchErrors({status: 500, message: "Internal Server Error", error});
+	}
 }

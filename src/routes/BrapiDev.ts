@@ -1,6 +1,7 @@
 import { Elysia, t } from "elysia";
 import { listStocks, detailStock } from "@/proxy/BrapiDev";
 import queryParamsEncode from "@/traits/queryParamsEncode";
+import swaggerDetail from "@/helpers/SwaggerDetail";
 
 export function BrapiDevRoutes(app: Elysia): Elysia {
     return app.use(
@@ -11,21 +12,28 @@ export function BrapiDevRoutes(app: Elysia): Elysia {
             detail: {
                 tags: [ "BrapiDev" ],
             },
-        }).get(
-            "/list",
-            async ({ query }) =>
-                listStocks({
-                    query: queryParamsEncode(query),
-                }),
-            {
-                query: t.Object({
-                    limit: t.Optional(t.Number({ default: 12 })),
-                    page: t.Optional(t.Number({ default: 1 })),
-                    sortBy: t.Optional(t.String()),
-                    sortOrder: t.Optional(t.String()),
-                }),
-            },
-        )
+        })
+            .get(
+                "/list",
+                async ({ query }) =>
+                    listStocks({
+                        query: queryParamsEncode(query),
+                    }),
+                {
+                    query: t.Object({
+                        limit: t.Optional(t.Number({ default: 12 })),
+                        page: t.Optional(t.Number({ default: 1 })),
+                        sortBy: t.Optional(t.String()),
+                        sortOrder: t.Optional(t.String()),
+                    }),
+                    detail: swaggerDetail(
+                        "Get list of stocks",
+                        200,
+                        "Stocks",
+                        true
+                    ),
+                },
+            )
             .get(
                 "/:ticker",
                 async ({ query, params }) =>
@@ -42,7 +50,13 @@ export function BrapiDevRoutes(app: Elysia): Elysia {
                     params: t.Object({
                         ticker: t.String(),
                     }),
+                    detail: swaggerDetail(
+                        "Get detail of a stock",
+                        200,
+                        "Stock",
+                        false
+                    ),
                 },
-            )
+            ),
     );
 }

@@ -1,26 +1,26 @@
-import { get } from "@/helpers/HttpClient";
-import type { ElysiaCustomStatusResponse } from "elysia/dist/error";
-import type { CryptoDataDescription, CryptoGraphDetail } from "@/types/CoinGecko/CryptoDetail";
-import type { CryptoCurrency } from "@/types/CoinGecko/CryptoCurrency";
-import catchErrors, { type CatchError } from "@/errors/catcher";
+import {get} from "@/helpers/HttpClient";
+import type {ElysiaCustomStatusResponse} from "elysia/dist/error";
+import type {CryptoDataDescription, CryptoGraphDetail} from "@/types/CoinGecko/CryptoDetail";
+import type {CryptoCurrency} from "@/types/CoinGecko/CryptoCurrency";
+import catchErrors, {type CatchError} from "@/errors/catcher";
 
 const BASE_API_URL = Bun.env.COINGECKO_HOST;
 const API_KEY = Bun.env.COINGECKO_KEY;
 
 const defaultHeaders = {
-    "Accept-Encoding": "deflate, gzip",
-    "referrer-policy": "origin-when-cross-origin",
-    X_CG_DEMO_API_KEY: API_KEY,
+	"Accept-Encoding": "deflate, gzip",
+	"referrer-policy": "origin-when-cross-origin",
+	X_CG_DEMO_API_KEY: API_KEY,
 };
 
 interface ListQueryParams {
-    vs_currency?: string;
-    per_page?: number;
-    page?: number;
-    price_change_percentage?: string;
-    order?: string;
-    category?: string;
-    precision?: number;
+	vs_currency?: string;
+	per_page?: number;
+	page?: number;
+	price_change_percentage?: string;
+	order?: string;
+	category?: string;
+	precision?: number;
 }
 
 /**
@@ -31,42 +31,44 @@ interface ListQueryParams {
  * @throws {ElysiaCustomStatusResponse<number, CatchError>} If the request to the external API fails
  */
 export async function listCryptoCurrencies({
-    query,
-}: { query: ListQueryParams }): Promise<CryptoCurrency[] | ElysiaCustomStatusResponse<number, CatchError>> {
-    const vsCurrencyQuery = `?vs_currency=${query.vs_currency as string}`;
-    const perPageQuery = `&per_page=${query.per_page as number}`;
-    const pageQuery = `&page=${query.page as number}`;
-    const precisionQuery = `&precision=${query.precision as number}`;
-    const priceChangePercentageQuery = query.price_change_percentage
-        ? `&price_change_percentage=${query.price_change_percentage}`
-        : "";
-    const orderQuery = query.order ? `&order=${query.order}` : "";
-    const categoryQuery = query.category ? `&category=${query.category}` : "";
+	query,
+}: {query: ListQueryParams}): Promise<
+	CryptoCurrency[] | ElysiaCustomStatusResponse<number, CatchError>
+> {
+	const vsCurrencyQuery = `?vs_currency=${query.vs_currency as string}`;
+	const perPageQuery = `&per_page=${query.per_page as number}`;
+	const pageQuery = `&page=${query.page as number}`;
+	const precisionQuery = `&precision=${query.precision as number}`;
+	const priceChangePercentageQuery = query.price_change_percentage
+		? `&price_change_percentage=${query.price_change_percentage}`
+		: "";
+	const orderQuery = query.order ? `&order=${query.order}` : "";
+	const categoryQuery = query.category ? `&category=${query.category}` : "";
 
-    const url = `${BASE_API_URL}/coins/markets${vsCurrencyQuery}${perPageQuery}${pageQuery}${precisionQuery}${priceChangePercentageQuery}${orderQuery}${categoryQuery}`;
+	const url = `${BASE_API_URL}/coins/markets${vsCurrencyQuery}${perPageQuery}${pageQuery}${precisionQuery}${priceChangePercentageQuery}${orderQuery}${categoryQuery}`;
 
-    try {
-        const response = await get(url, defaultHeaders);
+	try {
+		const response = await get(url, defaultHeaders);
 
-        if (!response.ok) throw new Error();
+		if (!response.ok) throw new Error();
 
-        const cryptos: CryptoCurrency[] = await response.json();
+		const cryptos: CryptoCurrency[] = await response.json();
 
-        return cryptos;
-    } catch (error: unknown) {
-        return catchErrors({ status: 500, message: "Internal Server Error", error });
-    }
+		return cryptos;
+	} catch (error: unknown) {
+		return catchErrors({status: 500, message: "Internal Server Error", error});
+	}
 }
 
 interface DetailQueryParams {
-    vs_currency?: string;
-    from?: number;
-    to?: number;
-    precision?: number;
+	vs_currency?: string;
+	from?: number;
+	to?: number;
+	precision?: number;
 }
 
 interface SlugParams {
-    slug: string;
+	slug: string;
 }
 
 /**
@@ -78,33 +80,31 @@ interface SlugParams {
  * @throws {ElysiaCustomStatusResponse<number, CatchError>} If the request to the external API fails
  */
 export async function detailCryptoMarketChart({
-    query,
-    params,
-}: { query: DetailQueryParams; params: SlugParams }): Promise<
-    CryptoGraphDetail | ElysiaCustomStatusResponse<number, CatchError>
+	query,
+	params,
+}: {query: DetailQueryParams; params: SlugParams}): Promise<
+	CryptoGraphDetail | ElysiaCustomStatusResponse<number, CatchError>
 > {
-    const vsCurrencyQuery = `?vs_currency=${query.vs_currency}`;
-    const fromQuery = `&from=${query.from}`;
-    const toQuery = `&to=${query.to}`;
-    const precisionQuery = `&precision=${query.precision}`;
+	const vsCurrencyQuery = `?vs_currency=${query.vs_currency}`;
+	const fromQuery = `&from=${query.from}`;
+	const toQuery = `&to=${query.to}`;
+	const precisionQuery = `&precision=${query.precision}`;
 
-    const slug = encodeURIComponent(params.slug);
+	const slug = encodeURIComponent(params.slug);
 
-    const url = `${BASE_API_URL}/coins/${slug}/market_chart/range${vsCurrencyQuery}${fromQuery}${toQuery}${precisionQuery}`;
+	const url = `${BASE_API_URL}/coins/${slug}/market_chart/range${vsCurrencyQuery}${fromQuery}${toQuery}${precisionQuery}`;
 
-    console.log(url);
+	try {
+		const response = await get(url, defaultHeaders);
 
-    try {
-        const response = await get(url, defaultHeaders);
+		if (!response.ok) throw new Error();
 
-        if (!response.ok) throw new Error();
+		const jsonData: CryptoGraphDetail = await response.json();
 
-        const jsonData: CryptoGraphDetail = await response.json();
-
-        return jsonData;
-    } catch (error: unknown) {
-        return catchErrors({ status: 500, message: "Internal Server Error", error });
-    }
+		return jsonData;
+	} catch (error: unknown) {
+		return catchErrors({status: 500, message: "Internal Server Error", error});
+	}
 }
 
 /**
@@ -115,21 +115,23 @@ export async function detailCryptoMarketChart({
  * @throws {ElysiaCustomStatusResponse<number, CatchError>} If the request to the external API fails
  */
 export async function detailCryptoDescriptionData({
-    params,
-}: { params: SlugParams }): Promise<CryptoDataDescription | ElysiaCustomStatusResponse<number, CatchError>> {
-    const slug = encodeURIComponent(params.slug);
+	params,
+}: {params: SlugParams}): Promise<
+	CryptoDataDescription | ElysiaCustomStatusResponse<number, CatchError>
+> {
+	const slug = encodeURIComponent(params.slug);
 
-    const url = `${BASE_API_URL}/coins/${slug}`;
+	const url = `${BASE_API_URL}/coins/${slug}`;
 
-    try {
-        const response = await get(url, defaultHeaders);
+	try {
+		const response = await get(url, defaultHeaders);
 
-        if (!response.ok) throw new Error();
+		if (!response.ok) throw new Error();
 
-        const jsonData: CryptoDataDescription = await response.json();
+		const jsonData: CryptoDataDescription = await response.json();
 
-        return jsonData;
-    } catch (error: unknown) {
-        return catchErrors({ status: 500, message: "Internal Server Error", error });
-    }
+		return jsonData;
+	} catch (error: unknown) {
+		return catchErrors({status: 500, message: "Internal Server Error", error});
+	}
 }
