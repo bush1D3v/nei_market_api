@@ -2,7 +2,6 @@
 .vscode
 tests
 .editorconfig
-.env
 .env.example
 .gitignore
 biome.json
