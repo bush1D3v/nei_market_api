@@ -7,6 +7,9 @@
 		"streetsidesoftware.code-spell-checker-portuguese-brazilian",
 		"ms-azuretools.vscode-docker",
 		"EditorConfig.EditorConfig",
-		"ms-vscode-remote.remote-containers"
+		"ms-vscode-remote.remote-containers",
+		"usernamehw.errorlens",
+		"xabikos.JavaScriptSnippets",
+		"christian-kohler.path-intellisense"
 	]
 }
