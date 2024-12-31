@@ -1,7 +1,7 @@
 PT-BR 🇧🇷
-# 🖋️ Contribuindo para o Blog
+# 🖋️ Contribuindo para o NEI
 
-Agradeço pelo seu interesse em contribuir para o meu **Blog**. Sua ajuda é **valiosa** para melhorar e **expandir** minha aplicação. Abaixo estão as **diretrizes** e os **passos** para contribuir com meu projeto.
+Agradeço pelo seu interesse em contribuir para o projeto **NEI**. Sua ajuda é **valiosa** para melhorar e **expandir** minha aplicação. Abaixo estão as **diretrizes** e os **passos** para contribuir com meu projeto.
 
 ## 💻 Como Contribuir
 
@@ -14,8 +14,8 @@ Antes de começar, você **deverá** forkar o repositório do projeto para **seu
 Após o Fork, você **precisará** clonar o repositório forkado para seu **ambiente de desenvolvimento local**:
 
 ```
-git clone https://github.com/{seu-usuario}/navarro_blog_api.git
-cd navarro_blog_api
+git clone https://github.com/{seu-usuario}/nei_market_api.git
+cd nei_market_api
 ```
 
 ### 🆕 Criando uma Branch
@@ -74,12 +74,12 @@ Após criar um Pull Request, nossa equipe revisará suas alterações e fornecer
 
 #
 
-**_Agradeço pela sua contribuição e espero que possamos trabalhar juntos para tornar o meu Blog ainda melhor. Se você tiver alguma dúvida ou precisar de ajuda, não hesite em entrar em contato comigo. Juntos, podemos criar uma aplicação mais robusta e eficiente._**
+**_Agradeço pela sua contribuição e espero que possamos trabalhar juntos para tornar o projeto NEI ainda melhor. Se você tiver alguma dúvida ou precisar de ajuda, não hesite em entrar em contato comigo. Juntos, podemos criar uma aplicação mais robusta e eficiente._**
 
 ENG 🇺🇸
-# 🖋️ Contributing to the Blog
+# 🖋️ Contributing to the NEI
 
-Thank you for your interest in contributing to my **Blog**. Your help is **valuable** to improve and **expand** my application. Below are the **guidelines** and **steps** to contribute to my project.
+Thank you for your interest in contributing to **NEI** project. Your help is **valuable** to improve and **expand** my application. Below are the **guidelines** and **steps** to contribute to my project.
 
 ## 💻 How to Contribute
 
@@ -92,8 +92,8 @@ Before you begin, you **must** fork the project repository to **your profile**.
 After Fork, you **will** need to clone the forked repository to your **local development environment**:
 
 ```
-git clone https://github.com/{seu-usuario}/navarro_blog_api.git
-cd navarro_blog_api
+git clone https://github.com/{seu-usuario}/nei_market_api.git
+cd nei_market_api
 ```
 
 ### 🆕 Creating a Branch
@@ -152,4 +152,4 @@ After creating a Pull Request, our team will review your changes and provide fee
 
 #
 
-**_Thank you for your contribution and I hope we can work together to make my Blog even better. If you have any questions or need help, don't hesitate to contact me. Together, we can create a more robust and efficient application._**
+**_Thank you for your contribution and I hope we can work together to make NEI project even better. If you have any questions or need help, don't hesitate to contact me. Together, we can create a more robust and efficient application._**
