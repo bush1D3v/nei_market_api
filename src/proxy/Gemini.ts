@@ -3,9 +3,7 @@ import type {Socket} from "socket.io";
 import type {ElysiaCustomStatusResponse} from "elysia/dist/error";
 import catchErrors, {type CatchError} from "@/errors/catcher";
 
-const API_KEY = Bun.env.GEMINI_KEY as string;
-
-const genAI = new GoogleGenerativeAI(API_KEY);
+const genAI = new GoogleGenerativeAI(Bun.env.GEMINI_KEY);
 
 let socket: Socket;
 

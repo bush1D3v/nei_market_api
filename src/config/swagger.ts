@@ -1,5 +1,7 @@
 import type {ElysiaSwaggerConfig} from "@elysiajs/swagger";
 
+const LocalServerUrl = `${Bun.env.CLIENT_HOST}:${Bun.env.CLIENT_PORT}`;
+
 export const swaggerConfig: ElysiaSwaggerConfig = {
 	version: "1.0.0",
 	documentation: {
@@ -44,7 +46,7 @@ export const swaggerConfig: ElysiaSwaggerConfig = {
 		},
 		servers: [
 			{
-				url: "http://localhost:3000",
+				url: LocalServerUrl,
 				description: "Local Server",
 			},
 		],

@@ -9,12 +9,11 @@ import type {DetailedStock} from "@/types/BrapiDev/DetailedStock";
 import catchErrors, {type CatchError} from "@/errors/catcher";
 
 const BASE_API_URL = Bun.env.BRAPI_HOST;
-const API_KEY = Bun.env.BRAPI_KEY;
 
 const defaultHeaders = {
 	"Accept-Encoding": "deflate, gzip",
 	"referrer-policy": "origin-when-cross-origin",
-	authorization: `Bearer ${API_KEY}`,
+	authorization: `Bearer ${Bun.env.BRAPI_KEY}`,
 };
 
 interface ListQueryParams {

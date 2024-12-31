@@ -5,12 +5,11 @@ import type {CryptoCurrency} from "@/types/CoinGecko/CryptoCurrency";
 import catchErrors, {type CatchError} from "@/errors/catcher";
 
 const BASE_API_URL = Bun.env.COINGECKO_HOST;
-const API_KEY = Bun.env.COINGECKO_KEY;
 
 const defaultHeaders = {
 	"Accept-Encoding": "deflate, gzip",
 	"referrer-policy": "origin-when-cross-origin",
-	X_CG_DEMO_API_KEY: API_KEY,
+	X_CG_DEMO_API_KEY: Bun.env.COINGECKO_KEY,
 };
 
 interface ListQueryParams {

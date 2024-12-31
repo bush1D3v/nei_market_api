@@ -3,11 +3,10 @@ import type {New} from "@/types/Finnhub/New";
 import type {ElysiaCustomStatusResponse} from "elysia/dist/error";
 import catchErrors, {type CatchError} from "@/errors/catcher";
 
-const BASE_API_URL = Bun.env.FINNHUB_HOST as string;
-const API_KEY = Bun.env.FINNHUB_KEY as string;
+const BASE_API_URL = Bun.env.FINNHUB_HOST;
 
 const defaultHeaders = {
-	"X-Finnhub-Token": API_KEY,
+	"X-Finnhub-Token": Bun.env.FINNHUB_KEY,
 };
 
 interface ListingsMarketNewsQueryParams {
