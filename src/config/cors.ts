@@ -10,7 +10,7 @@ export const corsOptions = {
 		"Access-Control-Allow-Origin",
 	],
 	credentials: true,
-	maxAge: 86400,
+	maxAge: 3600, // 1 hour
 	aot: false,
 	exposeHeaders: true as const,
 	preflight: true,

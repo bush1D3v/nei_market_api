@@ -1,25 +1,35 @@
-import { describe, expect, it } from "bun:test";
+import {describe, expect, it} from "bun:test";
 import responseProcessor from "#/helpers/responseProcessor";
 import app from "@/app";
-import type { CurrencyQuotes } from "@/types/CurrencyQuotes/CurrencyQuotes";
+import type {CurrencyQuotes} from "@/types/CurrencyQuotes/CurrencyQuotes";
 
 describe("Currency Quotes Routes", () => {
-    describe("GET /api/latest", () => {
-        it("Return a response", async () => {
-            const response = await responseProcessor(app, "/api/latest");
+	describe("GET /api/latest", () => {
+		it("Return a response", async () => {
+			const {response, json} = await responseProcessor(app, "/api/latest");
 
-            expect(response).toBeInstanceOf(Object);
-            expect(response).toHaveProperty("table");
-            expect(response).toHaveProperty("rates");
-            expect(response).toHaveProperty("lastupdate");
-        });
+			expect(response).toBeInstanceOf(Response);
+			expect(response).toHaveProperty("status");
+			expect(response.status).toBe(200);
 
-        it("Response has correct types", async () => {
-            const response: CurrencyQuotes = await responseProcessor(app, "/api/latest");
+			expect(json).toBeInstanceOf(Object);
+			expect(json).toHaveProperty("table");
+			expect(json).toHaveProperty("rates");
+			expect(json).toHaveProperty("lastupdate");
+		});
 
-            expect(typeof response.table).toBe("string");
-            expect(typeof response.rates).toBe("object");
-            expect(typeof response.lastupdate).toBe("string");
-        });
-    });
+		it("Response has correct types", async () => {
+			const {response, json}: {response: Response; json: CurrencyQuotes} =
+				await responseProcessor(app, "/api/latest");
+
+			expect(response).toBeInstanceOf(Response);
+			expect(response).toHaveProperty("status");
+			expect(response.status).toBe(200);
+
+			expect(json).toBeInstanceOf(Object);
+			expect(typeof json.table).toBe("string");
+			expect(typeof json.rates).toBe("object");
+			expect(typeof json.lastupdate).toBe("string");
+		});
+	});
 });
