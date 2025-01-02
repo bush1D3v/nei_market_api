@@ -19,12 +19,23 @@ export async function listCurrencyQuotes(): Promise<
 	try {
 		const response = await get(url);
 
-		if (!response.ok) throw new Error();
+		if (!response.ok) {
+			const errorData = await response.text();
+			return catchErrors({
+				status: response.status,
+				message: "Error fetching currency quotes",
+				error: errorData,
+			});
+		}
 
 		const jsonData: CurrencyQuotes = await response.json();
 
 		return jsonData;
 	} catch (error: unknown) {
-		return catchErrors({status: 500, message: "Internal Server Error", error});
+		return catchErrors({
+			status: 500,
+			message: "Internal Server Error",
+			error,
+		});
 	}
 }

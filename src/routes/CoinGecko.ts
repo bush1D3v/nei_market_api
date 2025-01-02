@@ -42,6 +42,7 @@ export function CoinGeckoRoutes(app: Elysia): Elysia {
 						"Get the latest cryptocurrencies data",
 						200,
 						"CryptoCurrencies",
+
 						true,
 					),
 				},
@@ -67,6 +68,7 @@ export function CoinGeckoRoutes(app: Elysia): Elysia {
 						"Get the market chart data of a cryptocurrency",
 						200,
 						"CryptoCurrencyGraph",
+
 						true,
 					),
 				},

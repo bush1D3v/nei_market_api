@@ -12,10 +12,10 @@ export default function catchErrors(
 	err: CatchError,
 ): ElysiaCustomStatusResponse<number, CatchError> {
 	console.error(err);
-	console.log(err);
 	return error(err.status, {
 		message: `${err.message} - ${getStatusText(err.status)}`,
 		status: err.status,
 		error: err.error,
+		date: new Date(),
 	});
 }

@@ -9,15 +9,24 @@ import rateLimiter from "@/middlewares/rateLimiter";
 import swagger from "@/middlewares/swagger";
 import helmet from "@/middlewares/helmet";
 import handlePreflight from "@/middlewares/handlePreflight";
+import catchErrors from "@/errors/catcher";
 
 const app = new Elysia({
 	name: "NEI Market Analytics API",
 	aot: false,
-}).onRequest(({set, request}) => {
-	if (!request.url.endsWith("/swagger")) helmet(set);
+})
+	.onRequest(({set, request}) => {
+		if (!request.url.endsWith("/swagger")) helmet(set);
 
-	if (request.method === "OPTIONS") handlePreflight(set);
-});
+		if (request.method === "OPTIONS") handlePreflight(set);
+	})
+	.onError(({error}) => {
+		return catchErrors({
+			status: "status" in error ? error.status : 500,
+			message: error?.message,
+			error: error.stack,
+		});
+	});
 
 app.use(cors);
 app.use(rateLimiter);

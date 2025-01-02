@@ -79,6 +79,11 @@ export const swaggerConfig: ElysiaSwaggerConfig = {
 							example: "Traceback (most recent call last): ...",
 							description: "The error caused by the request",
 						},
+						date: {
+							type: "string",
+							example: "2025-01-02T19:18:46.238Z",
+							description: "The date and time of the error",
+						},
 					},
 				},
 				CurrencyQuotes: {
