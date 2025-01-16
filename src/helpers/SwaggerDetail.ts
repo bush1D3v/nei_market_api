@@ -80,6 +80,24 @@ export default function swaggerDetail(
 				},
 			},
 		},
+		422: {
+			description: "Unprocessable Entity",
+			content: {
+				"application/json": {
+					schema: {
+						$ref: "#/components/schemas/CatchError",
+					},
+					examples: {
+						value: {
+							status: 422,
+							message: "Personalized message - Unprocessable Entity",
+							error: "Error: UNPROCESSABLE_ENTITY\n at...",
+							date: "2025-01-02T19:18:46.238Z",
+						},
+					},
+				},
+			},
+		},
 		429: {
 			description: "Too Many Requests",
 			content: {
