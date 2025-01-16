@@ -1,5 +1,5 @@
 import {Elysia, t} from "elysia";
-import generateContent from "@/proxy/Gemini";
+import {generateContent} from "@/proxy/Gemini";
 import swaggerDetail from "@/helpers/SwaggerDetail";
 
 export function GenerativeAIRoutes(app: Elysia) {

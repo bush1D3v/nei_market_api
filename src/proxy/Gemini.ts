@@ -24,7 +24,7 @@ interface GeminiRequest {
  * @returns {{ message: string }} Confirmation message
  * @throws {ElysiaCustomStatusResponse<number, CatchError>} If the request to the external API fails
  */
-export default async function generateContent({
+export async function generateContent({
 	body,
 }: {body: GeminiRequest}): Promise<
 	{message: string} | ElysiaCustomStatusResponse<number, CatchError>
