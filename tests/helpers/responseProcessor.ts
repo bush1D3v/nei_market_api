@@ -21,14 +21,6 @@ export default async function responseProcessor<T>(
 	};
 
 	const response = await app.handle(new Request(`${BASE_URL}${path}`, requestInit));
-	if (body) console.log(await response.json());
-
-	if (body) {
-		return {
-			response: response,
-			json: {},
-		};
-	}
 
 	return {
 		response: response,

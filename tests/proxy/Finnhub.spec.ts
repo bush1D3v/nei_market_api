@@ -29,7 +29,7 @@ describe("Finnhub Routes", () => {
 		it("Response has correct types", async () => {
 			const {response, json}: {response: Response; json: New[]} = await responseProcessor(
 				app,
-				"/api/v1/company-news",
+				"/api/v1/news",
 			);
 
 			expect(response).toBeInstanceOf(Response);

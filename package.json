@@ -14,6 +14,7 @@
 		"docker-run": "docker-compose up --build"
 	},
 	"dependencies": {
+		"@bogeychan/elysia-logger": "^0.1.7",
 		"@elysiajs/cors": "^1.2.0",
 		"@elysiajs/swagger": "^1.2.0",
 		"@google/generative-ai": "^0.21.0",

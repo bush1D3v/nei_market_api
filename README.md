@@ -16,6 +16,7 @@ O **NEI Market Analytics** é um projeto de código aberto projetado para fornec
    <img align='center' height='54' width='54' title='Elysia.js' alt='elysiajs' src='https://github.com/user-attachments/assets/d69f9a84-c3f1-4412-a53f-9eb1a17473a4' /> &nbsp;
    <img align='center' height='54' width='54' title='Bun.js' alt='bunjs' src='https://github.com/devicons/devicon/blob/master/icons/bun/bun-original.svg' />
    <img align='center' height='50' width='70' title='TypeScript' alt='typescript' src='https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg' />
+    <img align='center' height='50' width='44' title='Pino' alt='pino' src='https://github.com/user-attachments/assets/ced59cf0-f15d-40d1-85b9-3fa088eccffc' /> &nbsp;
    <img align='center' height='48' width='48' title='GitHub Actions' alt='github actions' src='https://github.com/bush1D3v/navarro_blog_api/assets/133554156/0ce89dba-2909-4673-8b71-94a135f61bfb' /> &nbsp;&nbsp;
    <img align='center' height='70' width='70' title='Docker' alt='docker' src='https://github.com/devicons/devicon/blob/master/icons/docker/docker-plain.svg' />
    <img align='center' height='50' width='60' title='Biomejs' alt='biomejs' src='https://github.com/user-attachments/assets/b3d8a249-e17f-4e64-9608-4a4783b7bbc0' /> &nbsp;&nbsp;
@@ -82,6 +83,7 @@ The **NEI Market Analytics** is an open-source project designed to provide compr
    <img align='center' height='54' width='54' title='Elysia.js' alt='elysiajs' src='https://github.com/user-attachments/assets/d69f9a84-c3f1-4412-a53f-9eb1a17473a4' /> &nbsp;
    <img align='center' height='54' width='54' title='Bun.js' alt='bunjs' src='https://github.com/devicons/devicon/blob/master/icons/bun/bun-original.svg' />
    <img align='center' height='50' width='70' title='TypeScript' alt='typescript' src='https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg' />
+   <img align='center' height='50' width='44' title='Pino' alt='pino' src='https://github.com/user-attachments/assets/ced59cf0-f15d-40d1-85b9-3fa088eccffc' /> &nbsp;
    <img align='center' height='48' width='48' title='GitHub Actions' alt='github actions' src='https://github.com/bush1D3v/navarro_blog_api/assets/133554156/0ce89dba-2909-4673-8b71-94a135f61bfb' /> &nbsp;&nbsp;
    <img align='center' height='70' width='70' title='Docker' alt='docker' src='https://github.com/devicons/devicon/blob/master/icons/docker/docker-plain.svg' />
    <img align='center' height='50' width='60' title='Biomejs' alt='biomejs' src='https://github.com/user-attachments/assets/b3d8a249-e17f-4e64-9608-4a4783b7bbc0' /> &nbsp;&nbsp;

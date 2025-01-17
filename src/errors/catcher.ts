@@ -11,7 +11,6 @@ export interface CatchError {
 export default function catchErrors(
 	err: CatchError,
 ): ElysiaCustomStatusResponse<number, CatchError> {
-	//console.error(err);
 	return error(err.status, {
 		message: `${err.message} - ${getStatusText(err.status)}`,
 		status: err.status,
