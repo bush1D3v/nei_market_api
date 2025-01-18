@@ -68,8 +68,6 @@ describe("Gemini Routes", () => {
             expect(response).toHaveProperty("status");
             expect(response.status).toBe(422);
 
-            console.log(json);
-
             expect(json).toBeInstanceOf(Object);
             expect(json).toHaveProperty("message");
             expect(json).toHaveProperty("status");

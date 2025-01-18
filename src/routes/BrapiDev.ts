@@ -98,8 +98,8 @@ export function BrapiDevRoutes(app: Elysia): Elysia {
                     params: t.Object({
                         ticker: t.String({
                             examples: [ "AAPL", "TSLA", "AMZN", "GOOGL" ],
-                            minLength: 1,
-                            maxLength: 5,
+                            minLength: 4,
+                            maxLength: 7,
                             error({ errors }) {
                                 TErrorFormatter(errors)
                             }
