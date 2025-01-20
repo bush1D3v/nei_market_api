@@ -3,6 +3,7 @@ import {
 	detailCryptoMarketChart,
 	detailCryptoDescriptionData,
 	listCryptoCurrencies,
+	searchCrypto,
 } from "@/proxy/CoinGecko";
 import TErrorFormatter from "@/traits/TErrorFormatter";
 import queryParamsEncode from "@/traits/queryParamsEncode";
@@ -190,6 +191,23 @@ export function CoinGeckoRoutes(app: Elysia): Elysia {
 					"Get the details data of a cryptocurrency",
 					200,
 					"CryptoCurrency",
+					true,
+				),
+			})
+			.get("/search", async ({query}) => searchCrypto({query}), {
+				query: t.Object({
+					query: t.String({
+						examples: ["bit", "bitc", "bitcoin"],
+						minLength: 1,
+						error({errors}) {
+							TErrorFormatter(errors);
+						},
+					}),
+				}),
+				detail: swaggerDetail(
+					"Get the cryptocurrency list based on the search query",
+					200,
+					"SearchCrypto",
 					true,
 				),
 			}),

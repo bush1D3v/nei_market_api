@@ -2,6 +2,7 @@ import {get} from "@/helpers/HttpClient";
 import type {ElysiaCustomStatusResponse} from "elysia/dist/error";
 import type {CryptoDataDescription, CryptoGraphDetail} from "@/types/CoinGecko/CryptoDetail";
 import type {CryptoCurrency} from "@/types/CoinGecko/CryptoCurrency";
+import type {SearchCrypto} from "@/types/CoinGecko/SearchCrypto";
 import catchErrors, {type CatchError} from "@/errors/catcher";
 
 const BASE_API_URL = Bun.env.COINGECKO_HOST;
@@ -130,6 +131,43 @@ export async function detailCryptoDescriptionData({
 		const jsonData: CryptoDataDescription = await response.json();
 
 		return jsonData;
+	} catch (error: unknown) {
+		return catchErrors({status: 500, message: "Internal Server Error", error});
+	}
+}
+
+interface SearchQueryParams {
+	query: string;
+}
+
+interface SearchResponseBody {
+	coins: SearchCrypto[];
+}
+
+/**
+ * @description Handles the request to get the cryptocurrency.
+ *
+ * @param {SearchQueryParams} query - The query parameters
+ * @returns {SearchCrypto[]} The list of cryptocurrencies
+ * @throws {ElysiaCustomStatusResponse<number, CatchError>} If the request to the external API fails
+ */
+export async function searchCrypto({
+	query,
+}: {query: SearchQueryParams}): Promise<
+	SearchCrypto[] | ElysiaCustomStatusResponse<number, CatchError>
+> {
+	const searchQuery = `?query=${query.query}`;
+
+	const url = `${BASE_API_URL}/search${searchQuery}`;
+
+	try {
+		const response = await get(url, defaultHeaders);
+
+		if (!response.ok) throw new Error();
+
+		const jsonData: SearchResponseBody = await response.json();
+
+		return jsonData.coins;
 	} catch (error: unknown) {
 		return catchErrors({status: 500, message: "Internal Server Error", error});
 	}

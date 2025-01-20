@@ -610,6 +610,41 @@ export const swaggerConfig: ElysiaSwaggerConfig = {
 						},
 					},
 				},
+				SearchCrypto: {
+					type: "object",
+					properties: {
+						id: {
+							type: "string",
+							example: "bitcoin",
+						},
+						name: {
+							type: "string",
+							example: "Bitcoin",
+						},
+						api_symbol: {
+							type: "string",
+							example: "btc",
+						},
+						symbol: {
+							type: "string",
+							example: "btc",
+						},
+						market_cap_rank: {
+							type: "integer",
+							example: 1,
+						},
+						thumb: {
+							type: "string",
+							example:
+								"https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579",
+						},
+						large: {
+							type: "string",
+							example:
+								"https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
+						},
+					},
+				},
 				Stocks: {
 					type: "object",
 					properties: {
