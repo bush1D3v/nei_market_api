@@ -11,7 +11,7 @@ export default async function responseProcessor<T>(
 	app: Elysia,
 	path: string,
 	body?: T,
-): Promise<{response: Response; json: any}> {
+): Promise<{response: Response; json: T}> {
 	const requestInit: RequestInit = {
 		method: body ? "POST" : "GET",
 		headers: {
