@@ -65,7 +65,6 @@ interface DetailQueryParams {
 	vs_currency?: string;
 	from?: number;
 	to?: number;
-	precision?: number;
 }
 
 interface SlugParams {
@@ -89,11 +88,10 @@ export async function detailCryptoMarketChart({
 	const vsCurrencyQuery = `?vs_currency=${query.vs_currency}`;
 	const fromQuery = `&from=${query.from}`;
 	const toQuery = `&to=${query.to}`;
-	const precisionQuery = `&precision=${query.precision}`;
 
 	const slug = encodeURIComponent(params.slug);
 
-	const url = `${BASE_API_URL}/coins/${slug}/market_chart/range${vsCurrencyQuery}${fromQuery}${toQuery}${precisionQuery}`;
+	const url = `${BASE_API_URL}/coins/${slug}/market_chart/range${vsCurrencyQuery}${fromQuery}${toQuery}`;
 
 	try {
 		const response = await get(url, defaultHeaders);

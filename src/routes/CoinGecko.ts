@@ -150,16 +150,6 @@ export function CoinGeckoRoutes(app: Elysia): Elysia {
 								},
 							}),
 						),
-						precision: t.Optional(
-							t.Number({
-								examples: [0, 1, 2],
-								default: 2,
-								minimum: 1,
-								error({errors}) {
-									TErrorFormatter(errors);
-								},
-							}),
-						),
 					}),
 					params: t.Object({
 						slug: t.String({
