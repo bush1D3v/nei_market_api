@@ -1,5 +1,10 @@
+const origin =
+	import.meta.env.SERVER_AMBIENT === "development"
+		? `${Bun.env.CLIENT_HOST}${Bun.env.CLIENT_PORT}`
+		: Bun.env.CLIENT_HOST;
+
 export const corsOptions = {
-	origin: `${Bun.env.CLIENT_HOST}${Bun.env.CLIENT_PORT}`,
+	origin: origin,
 	methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 	allowedHeaders: [
 		"Content-Type",
