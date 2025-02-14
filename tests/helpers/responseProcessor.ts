@@ -1,6 +1,6 @@
 import type Elysia from "elysia";
 
-const BASE_URL = `${Bun.env.CLIENT_HOST}:${Bun.env.CLIENT_PORT}`;
+const BASE_URL = `${Bun.env.CLIENT_HOST}${Bun.env.CLIENT_PORT}`;
 
 /**
  * @param app Test Elysia Application

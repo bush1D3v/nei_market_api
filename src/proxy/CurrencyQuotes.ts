@@ -1,7 +1,7 @@
-import { get } from "@/helpers/HttpClient";
-import type { CurrencyQuotes } from "@/types/CurrencyQuotes/CurrencyQuotes";
-import type { ElysiaCustomStatusResponse } from "elysia/dist/error";
-import catchErrors, { type CustomError, type CatchError } from "@/errors/catcher";
+import {get} from "@/helpers/HttpClient";
+import type {CurrencyQuotes} from "@/types/CurrencyQuotes/CurrencyQuotes";
+import type {ElysiaCustomStatusResponse} from "elysia/dist/error";
+import catchErrors, {type CustomError, type CatchError} from "@/errors/catcher";
 
 const BASE_API_URL = Bun.env.CURRENCYQUOTES_HOST;
 
@@ -12,31 +12,31 @@ const BASE_API_URL = Bun.env.CURRENCYQUOTES_HOST;
  * @throws {ElysiaCustomStatusResponse<number, CatchError>} If the request to the external API fails
  */
 export async function listCurrencyQuotes(): Promise<
-    CurrencyQuotes | ElysiaCustomStatusResponse<number, CatchError>
+	CurrencyQuotes | ElysiaCustomStatusResponse<number, CatchError>
 > {
-    const url = `${BASE_API_URL}/api/latest.json`;
+	const url = `${BASE_API_URL}/api/latest.json`;
 
-    try {
-        const response = await get(url);
+	try {
+		const response = await get(url);
 
-        if (!response.ok) {
-            const errorData = await response.text();
-            return catchErrors({
-                status: response.status,
-                message: "Error fetching currency quotes",
-                error: errorData,
-            });
-        }
+		if (!response.ok) {
+			const errorData = await response.text();
+			return catchErrors({
+				status: response.status,
+				message: "Error fetching currency quotes",
+				error: errorData,
+			});
+		}
 
-        const jsonData: CurrencyQuotes = await response.json();
+		const jsonData: CurrencyQuotes = await response.json();
 
-        return jsonData;
-    } catch (error: unknown) {
-        const err = error as CustomError;
-        return catchErrors({
-            status: err?.status || 500,
-            message: err?.message || "Internal Server Error",
-            error,
-        });
-    }
+		return jsonData;
+	} catch (error: unknown) {
+		const err = error as CustomError;
+		return catchErrors({
+			status: err?.status || 500,
+			message: err?.message || "Internal Server Error",
+			error,
+		});
+	}
 }

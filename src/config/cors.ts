@@ -1,5 +1,5 @@
 export const corsOptions = {
-	origin: `${Bun.env.CLIENT_HOST}:${Bun.env.CLIENT_PORT}`,
+	origin: `${Bun.env.CLIENT_HOST}${Bun.env.CLIENT_PORT}`,
 	methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 	allowedHeaders: [
 		"Content-Type",
