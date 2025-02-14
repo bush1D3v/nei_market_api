@@ -31,7 +31,7 @@ app.onError((ctx) => {
         error: ctx.error.stack,
     });
 });
-//app.use(cors);
+app.use(cors);
 app.use(rateLimiter);
 app.use(swagger);
 app.use(CoinGeckoRoutes);
