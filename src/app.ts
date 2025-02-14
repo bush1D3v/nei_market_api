@@ -24,7 +24,7 @@ const app = new Elysia({
 const log = logger(app);
 
 app.onError((ctx) => {
-    log.error(ctx);
+    //log.error(ctx);
     return catchErrors({
         status: "status" in ctx.error ? ctx.error.status : 500,
         message: ctx.error.message,

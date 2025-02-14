@@ -1,0 +1,5 @@
+{"level":50,"time":1739308798245,"pid":349830,"hostname":"bush1D3v","request":{"method":"GET","url":"http://localhost:3000/gemini-generate","referrer":null},"error":"NOT_FOUND"}
+{"level":50,"time":1739308798807,"pid":349830,"hostname":"bush1D3v","request":{"method":"GET","url":"http://localhost:3000/favicon.ico","referrer":null},"error":"NOT_FOUND"}
+{"level":50,"time":1739309914697,"pid":349830,"hostname":"bush1D3v","request":{"method":"GET","url":"http://localhost:3000/gemini-generate","referrer":null},"error":"NOT_FOUND"}
+{"level":50,"time":1739325358807,"pid":500910,"hostname":"bush1D3v","request":{"method":"GET","url":"http://localhost:3000/favicon.ico","referrer":"http://localhost:3000/swagger"},"error":"NOT_FOUND"}
+{"level":50,"time":1739369055424,"pid":97155,"hostname":"bush1D3v","request":{"method":"GET","url":"http://localhost:3000/favicon.ico","referrer":"http://localhost:3000/swagger"},"error":"NOT_FOUND"}
