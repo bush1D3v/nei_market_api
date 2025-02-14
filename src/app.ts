@@ -21,10 +21,10 @@ const app = new Elysia({
     if (request.method === "OPTIONS") handlePreflight(set);
 });
 
-const log = logger(app);
+const log = import.meta.env.SERVER_AMBIENT === "development" ? logger(app) : "";
 
 app.onError((ctx) => {
-    //log.error(ctx);
+    if (import.meta.env.SERVER_AMBIENT === "development" && log) log.error(ctx);
     return catchErrors({
         status: "status" in ctx.error ? ctx.error.status : 500,
         message: ctx.error.message,
