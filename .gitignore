@@ -39,5 +39,6 @@ yarn-error.log*
 **/*.tgz
 package-lock.json
 **/*.bun
-
+**/*.log
+logs/error.log
 .env
