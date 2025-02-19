@@ -1,8 +1,11 @@
 import app from "./app";
 import {Server} from "socket.io";
 import {setSocket} from "@/proxy/Gemini";
+import {corsOptions} from "@/config/cors";
 
-const io = new Server().listen(Bun.env.SOCKET_PORT);
+const io = new Server().listen(Bun.env.SOCKET_PORT, {
+	cors: corsOptions,
+});
 
 io.on("connection", (socketConnection) => {
 	setSocket(socketConnection);
