@@ -40,5 +40,4 @@ yarn-error.log*
 package-lock.json
 **/*.bun
 **/*.log
-logs/error.log
 .env

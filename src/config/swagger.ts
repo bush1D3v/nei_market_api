@@ -5,7 +5,7 @@ const LocalServerUrl = `${Bun.env.LOCAL_HOST}${Bun.env.LOCAL_PORT}`;
 export const swaggerConfig: ElysiaSwaggerConfig = {
 	version: "1.0.0",
 	documentation: {
-		openapi: "3.1.0",
+		openapi: "3.0.1",
 		tags: [
 			{
 				name: "CoinGecko",
@@ -48,6 +48,10 @@ export const swaggerConfig: ElysiaSwaggerConfig = {
 			{
 				url: LocalServerUrl,
 				description: "Local Server",
+			},
+			{
+				url: "https://nei-market-api.onrender.com/",
+				description: "Production Server",
 			},
 		],
 		components: {

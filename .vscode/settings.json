@@ -2,7 +2,8 @@
 	"material-icon-theme.folders.associations": {
 		"dto": "interface",
 		"proxy": "stack",
-		"traits": "helm"
+		"traits": "helm",
+		"infra": "Server"
 	},
 	"cSpell.words": [
 		"aboutus",
