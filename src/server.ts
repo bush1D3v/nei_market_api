@@ -9,7 +9,7 @@ const server = http.createServer((req, res) => {
     res.end("Servidor Socket.IO rodando!");
 })
 
-const io = new Server(app, {
+const io = new Server(server, {
     cors: corsOptions
 });
 
