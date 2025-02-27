@@ -9,7 +9,7 @@ const server = http.createServer((req, res) => {
     res.end("Servidor Socket.IO rodando!");
 })
 
-const io = new Server(server, {
+const io = new Server(app, {
     cors: corsOptions
 });
 
@@ -17,7 +17,7 @@ io.on("connection", (socketConnection) => {
     setSocket(socketConnection);
 });
 
-server.listen(3001, () => {
+server.listen(Bun.env.SOCKET_PORT, () => {
     console.log("🌐 Servidor Socket.IO rodando na porta 3001");
 });
 
