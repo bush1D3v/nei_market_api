@@ -1,11 +1,14 @@
 version: '3.2'
 
 services:
-  app:
-    image: "oven/bun"
-    entrypoint: []
-    command: "/bin/sh -c 'bun install && bun run --watch src/app.ts'"
-    ports:
-      - "3000:3000"
-      - "3001:3001"
-    volumes: ["./:/home/bun/app"]
+    app:
+        image: "oven/bun"
+        entrypoint: []
+        command: "/bin/sh -c 'bun install && bun run --watch src/server.ts'"
+        env_file:
+            - .env
+        ports:
+        - "3000:3000"
+        - "3001:3001"
+        volumes: ["./:/home/bun/app"]
+        network_mode: "host"
