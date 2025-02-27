@@ -9,6 +9,14 @@ const io = new Server({
     cors: corsOptions
 });
 
+io.use((socket, next) => {
+    socket.request.headers[ "Access-Control-Allow-Methods" ] = corsOptions.methods.join(",");
+    socket.request.headers[ "Access-Control-Allow-Headers" ] = corsOptions.allowedHeaders.join(",");
+    socket.request.headers[ "Access-Control-Allow-Credentials" ] = corsOptions.credentials.toString();
+    socket.request.headers[ "Access-Control-Max-Age" ] = corsOptions.maxAge.toString();
+    next();
+});
+
 io.on("connection", (socketConnection) => {
     setSocket(socketConnection);
 });
