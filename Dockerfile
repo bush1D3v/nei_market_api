@@ -9,6 +9,7 @@ RUN bun install --production
 
 COPY src src
 COPY tsconfig.json .
+COPY nginx.conf .
 
 ENV NODE_ENV production
 CMD ["bun", "run", "src/server.ts"]
