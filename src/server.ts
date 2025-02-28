@@ -7,20 +7,7 @@ import http from "node:http";
 const server = http.createServer();
 
 const io = new Server(server, {
-    cors: {
-        origin: "https://nei-market-analytics.vercel.app",
-        methods: [ "GET", "POST", "PUT", "PATCH", "DELETE" ],
-        allowedHeaders: [
-            "Content-Type",
-            "Authorization",
-            "Accept-Encoding",
-            "Accept",
-            "referrer-policy",
-            "Access-Control-Allow-Origin",
-        ],
-        credentials: true,
-        maxAge: 3600, // 1 hour
-    }
+    cors: corsOptions,
 });
 
 io.on("connection", (socketConnection) => {

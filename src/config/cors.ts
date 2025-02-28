@@ -4,7 +4,7 @@ const origin =
         : Bun.env.CLIENT_HOST;
 
 export const corsOptions = {
-    origin: "*",
+    origin,
     methods: [ "GET", "POST", "PUT", "PATCH", "DELETE" ],
     allowedHeaders: [
         "Content-Type",
@@ -16,7 +16,4 @@ export const corsOptions = {
     ],
     credentials: true,
     maxAge: 3600, // 1 hour
-    aot: false,
-    exposeHeaders: true as const,
-    preflight: true,
 };
