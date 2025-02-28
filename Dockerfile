@@ -9,10 +9,13 @@ RUN bun install --production
 
 COPY src src
 COPY tsconfig.json .
-COPY nginx.conf .
+COPY nginx.conf /etc/nginx/nginx.conf
 
 ENV NODE_ENV production
-CMD ["bun", "run", "src/server.ts"]
+
+RUN apt-get update && apt-get install -y nginx
+
+CMD service nginx start && bun run src/server.ts
 
 EXPOSE 80
 EXPOSE 3000
