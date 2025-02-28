@@ -3,6 +3,8 @@ import {Server} from "socket.io";
 import {setSocket} from "@/proxy/Gemini";
 import {corsOptions} from "./config/cors";
 
+corsOptions.origin = [];
+
 const io = new Server({
 	cors: corsOptions,
 }).listen(Bun.env.SOCKET_PORT, {
