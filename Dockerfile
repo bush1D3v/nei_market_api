@@ -13,5 +13,6 @@ COPY tsconfig.json .
 ENV NODE_ENV production
 CMD ["bun", "run", "src/server.ts"]
 
+EXPOSE 80
 EXPOSE 3000
 EXPOSE 3001
