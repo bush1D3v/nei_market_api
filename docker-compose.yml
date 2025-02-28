@@ -4,7 +4,7 @@ services:
     app:
         image: "oven/bun"
         entrypoint: []
-        command: "/bin/sh -c 'bun install && bun run --watch src/server.ts'"
+        command: "/bin/sh -c 'bun install && bun run --watch src/app.ts'"
         env_file:
             - .env
         ports:
@@ -12,3 +12,12 @@ services:
         - "3001:3001"
         volumes: ["./:/home/bun/app"]
         network_mode: "host"
+
+    nginx:
+        image: nginx:latest
+        ports:
+            - "80:80"
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf
+        depends_on:
+            - app
