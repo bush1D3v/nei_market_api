@@ -1,5 +1,7 @@
 FROM oven/bun
 
+USER root
+
 WORKDIR /app
 
 COPY package.json .
