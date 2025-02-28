@@ -8,7 +8,7 @@ const server = http.createServer();
 
 const io = new Server(server, {
     cors: {
-        origin: "https://nei-market-analytics.vercel.app/",
+        origin: "https://nei-market-analytics.vercel.app",
         methods: [ "GET", "POST", "PUT", "PATCH", "DELETE" ],
         allowedHeaders: [
             "Content-Type",
