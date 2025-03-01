@@ -17,7 +17,7 @@ ENV NODE_ENV=production
 
 RUN apk update && apk add nginx
 
-CMD ["sh", "-c", "service nginx start && bun run src/server.ts"]
+CMD ["sh", "-c", "nginx && bun run src/server.ts"]
 
 EXPOSE 80
 EXPOSE 3000
