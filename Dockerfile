@@ -15,7 +15,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 ENV NODE_ENV=production
 
-RUN apt-get update && apt-get install -y nginx
+RUN apk update && apk add nginx
 
 CMD ["sh", "-c", "service nginx start && bun run src/server.ts"]
 
