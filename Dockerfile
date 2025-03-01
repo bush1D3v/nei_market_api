@@ -1,5 +1,11 @@
 FROM nginx:1.26.3 AS nginx
 
+FROM ubuntu:20.04 AS dependencies
+
+RUN apt-get update && apt-get install -y \
+    libssl1.1 \
+    libcrypto++6
+
 FROM oven/bun
 
 WORKDIR /app
@@ -20,6 +26,9 @@ ENV NODE_ENV=production
 COPY --from=nginx /usr/sbin/nginx /usr/sbin/nginx
 COPY --from=nginx /etc/nginx /etc/nginx
 COPY --from=nginx /usr/share/nginx/html /usr/share/nginx/html
+
+COPY --from=dependencies /usr/lib/x86_64-linux-gnu/libssl.so.1.1 /usr/lib/libssl.so.1.1
+COPY --from=dependencies /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1 /usr/lib/libcrypto.so.1.1
 
 CMD ["sh", "-c", "nginx -g 'daemon off;' && bun run src/server.ts"]
 
