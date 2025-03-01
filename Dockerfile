@@ -10,7 +10,7 @@ RUN bun install --production
 COPY src src
 # COPY prisma prisma
 COPY tsconfig.json .
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 # RUN bunx prisma generate
 
 ENV NODE_ENV=production
