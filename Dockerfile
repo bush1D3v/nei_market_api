@@ -21,7 +21,7 @@ COPY --from=nginx /usr/sbin/nginx /usr/sbin/nginx
 COPY --from=nginx /etc/nginx /etc/nginx
 COPY --from=nginx /usr/share/nginx/html /usr/share/nginx/html
 
-CMD ["sh", "-c", "service nginx start && bun run src/server.ts"]
+CMD ["sh", "-c", "nginx && bun run src/server.ts"]
 
 EXPOSE 80
 EXPOSE 3000
