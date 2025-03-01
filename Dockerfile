@@ -15,7 +15,13 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 ENV NODE_ENV=production
 
-RUN apk update && apk add nginx
+FROM nginx:latest AS nginx
+
+COPY --from=nginx /usr/sbin/nginx /usr/sbin/nginx
+COPY --from=nginx /etc/nginx /etc/nginx
+COPY --from=nginx /var/log/nginx /var/log/nginx
+COPY --from=nginx /var/lib/nginx /var/lib/nginx
+COPY --from=nginx /usr/share/nginx /usr/share/nginx
 
 CMD ["sh", "-c", "service nginx start && bun run src/server.ts"]
 
