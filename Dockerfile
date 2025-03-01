@@ -20,7 +20,6 @@ FROM nginx:latest AS nginx
 COPY --from=nginx /usr/sbin/nginx /usr/sbin/nginx
 COPY --from=nginx /etc/nginx /etc/nginx
 COPY --from=nginx /var/log/nginx /var/log/nginx
-COPY --from=nginx /var/lib/nginx /var/lib/nginx
 
 CMD ["sh", "-c", "service nginx start && bun run src/server.ts"]
 
