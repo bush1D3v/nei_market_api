@@ -4,7 +4,7 @@ services:
     app:
         image: "oven/bun:alpine"
         entrypoint: []
-        command: "/bin/sh -c 'bun install && bun run --watch src/app.ts'"
+        command: "/bin/sh -c 'bun install && bun run --watch src/server.ts'"
         env_file:
             - .env
         ports:
