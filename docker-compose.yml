@@ -11,6 +11,8 @@ services:
         - "3000:3000"
         - "3001:3001"
         volumes: ["./:/home/bun/app"]
+        networks:
+            - app-network
 
     # db:
     #     image: "postgres"
