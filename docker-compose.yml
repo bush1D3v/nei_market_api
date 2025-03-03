@@ -11,7 +11,6 @@ services:
         - "3000:3000"
         - "3001:3001"
         volumes: ["./:/home/bun/app"]
-        network_mode: "host"
 
     # db:
     #     image: "postgres"
@@ -30,3 +29,9 @@ services:
             - ./nginx.conf:/etc/nginx/conf.d/default.conf
         depends_on:
             - app
+        networks:
+            - app-network
+
+networks:
+    app-network:
+        driver: bridge
