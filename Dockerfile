@@ -10,12 +10,13 @@ RUN bun install --production
 COPY src src
 # COPY prisma prisma
 COPY tsconfig.json .
-COPY nginx.conf .
 # RUN bunx prisma generate
 
 ENV NODE_ENV=production
 
 RUN apk update && apk add nginx
+
+COPY nginx.conf /etc/nginx/nginx.conf
 
 CMD ["sh", "-c", "nginx && bun run src/server.ts"]
 
