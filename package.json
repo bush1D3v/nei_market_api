@@ -20,7 +20,7 @@
 		"@elysiajs/cors": "^1.2.0",
 		"@elysiajs/jwt": "^1.2.0",
 		"@elysiajs/swagger": "^1.2.0",
-		"@google/generative-ai": "^0.21.0",
+		"@google/generative-ai": "^0.22.0",
 		"@prisma/client": "6.4.0",
 		"elysia": "latest",
 		"elysia-rate-limit": "^4.1.0",
